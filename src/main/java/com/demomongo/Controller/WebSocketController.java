@@ -1,8 +1,13 @@
 package com.demomongo.Controller;
 
 import com.demomongo.Modal.Content;
+import com.demomongo.Modal.ContentDao;
+import com.demomongo.Modal.Room;
 import com.demomongo.Service.ContentService;
+import com.demomongo.Service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -31,13 +36,26 @@ public class WebSocketController {
     @Autowired
     private ContentService contentService;
 
+    @Autowired
+    private RoomService roomService;
+
     @MessageMapping("/send/message/{roomId}")
 //    @SendTo("/topic/{roomId}")
-    public void  sendMessage_ (@DestinationVariable String roomId,  Content content) {
+    public void  sendMessage_ (@DestinationVariable String roomId,  ContentDao content) {
         System.out.println(content);
         this.template.convertAndSend("/topic/"+roomId, content);
+        contentService.saveContent(content);
+    }
 
-        contentService.save_(content);
+    @PostMapping("/saveRoom")
+    public ResponseEntity<?> saveRoom( @RequestBody Room room){
+        roomService.saveRoom(room);
+        return ResponseEntity.ok("success");
+    }
+    @PostMapping("/test")
+    public ResponseEntity<?> test(@RequestBody  ContentDao content){
+        contentService.saveContent1(content);
+        return ResponseEntity.ok("success");
     }
 
     //    @MessageMapping("/send/message")
@@ -54,9 +72,8 @@ public class WebSocketController {
 ////        this.template.convertAndSend("/message",  message);
 //        return ResponseEntity.ok(content);
 //    }
-    @RequestMapping("/history")
-    @CrossOrigin("http://localhost:3000")
-    public List<Content> getChatHistory(@RequestParam String roomId) {
-        return contentService.findByRoom(roomId);
+    @GetMapping("/history")
+    public ResponseEntity<List<Content>> getChatHistory(@RequestParam String roomId, @PageableDefault(size = 20) Pageable pageable) {
+        return ResponseEntity.ok(contentService.findByRoom(roomId, pageable));
     }
 }
