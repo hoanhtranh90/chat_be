@@ -3,6 +3,7 @@ package com.demomongo.Modal;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.Instant;
 
 @Entity
 @Table(name = "user_room_content")
@@ -17,4 +18,9 @@ public class UserRoomContent {
     private Long room_id;
 
     private Long content_id;
+
+    private String userName;
+    private String roomName;
+    private String noidung;
+    private Instant createdDate;
 }

@@ -65,7 +65,8 @@ public class CreateService {
         userRoom = new UserRoom();
         userRoom.setRoom_id(room.getId());
         userRoom.setUser_id(user.getId());
-
+        userRoom.setRoomName(room.getName());
+        userRoom.setUserName(user.getName());
         userRoomRepository.save(userRoom);
         return true;
     }
@@ -74,6 +75,10 @@ public class CreateService {
         userRoomContent.setContent_id(content.getId());
         userRoomContent.setRoom_id(room.getId());
         userRoomContent.setUser_id(user.getId());
+        userRoomContent.setUserName(user.getName());
+        userRoomContent.setRoomName(room.getName());
+        userRoomContent.setNoidung(content.getNoidung());
+        userRoomContent.setCreatedDate(content.getCreatedDate());
 
         userRoomContentRepository.save(userRoomContent);
         return true;

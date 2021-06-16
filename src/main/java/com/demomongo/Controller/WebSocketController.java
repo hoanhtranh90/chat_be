@@ -2,6 +2,7 @@ package com.demomongo.Controller;
 
 import com.demomongo.Modal.Content;
 import com.demomongo.Modal.ContentDao;
+import com.demomongo.Modal.UserRoomContent;
 import com.demomongo.Service.ContentService;
 import com.demomongo.Service.CreateService;
 import com.demomongo.Service.RoomService;
@@ -37,10 +38,10 @@ public class WebSocketController {
 
     @MessageMapping("/send/message/{roomId}")
 //    @SendTo("/topic/{roomId}")
-    public void  sendMessage_ (@DestinationVariable String roomId,  ContentDao content) {
+    public void  sendMessage_ (@DestinationVariable String roomId,  UserRoomContent content) {
         System.out.println(content);
         this.template.convertAndSend("/topic/"+roomId, content);
-        createService.createContent(content.getContent());
+        createService.createContent(content.getNoidung());
         createService.createUserRoomContent();
 //        contentService.saveContent(content);
     }

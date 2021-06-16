@@ -4,6 +4,7 @@ package com.demomongo.Service;
 import com.demomongo.Modal.*;
 import com.demomongo.Repository.ContentRepository;
 import com.demomongo.Repository.RoomRepository;
+import com.demomongo.Repository.UserRoomContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ public class ContentService {
     private ContentRepository contentRepository;
     @Autowired
     private RoomRepository roomRepository;
+    @Autowired
+    private UserRoomContentRepository userRoomContentRepository;
     private User user;
     private Room room;
     private Content content;

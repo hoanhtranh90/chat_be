@@ -16,4 +16,7 @@ public class UserRoom {
     private Long user_id;
 
     private Long room_id;
+
+    private String userName;
+    private String roomName;
 }
