@@ -1,10 +1,11 @@
 package com.demomongo.Service;
 
 import com.demomongo.Modal.Content;
-import com.demomongo.Modal.ContentDao;
 import com.demomongo.Modal.Room;
 import com.demomongo.Repository.ContentRepository;
+import com.demomongo.Repository.DAO.ContentDAOquery;
 import com.demomongo.Repository.RoomRepository;
+import com.demomongo.Repository.UserRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,16 @@ public class RoomService {
     @Autowired
     private RoomRepository roomRepository;
 
-    public void saveRoom(Room room){
-        if(!roomRepository.existsRoomByName(room.getName()))
-        {roomRepository.save(room);}
+    @Autowired
+    private UserRoomRepository userRoomRepository;
+
+    public void saveRoom(String userName, String roomName){
+//        if( !userRoomRepository.existsById(room.getName()) || !)
+//        {roomRepository.save(room);}
+    }
+    public List<Content> loadHistory(String roomName){
+        Room room = roomRepository.findByName(roomName);
+        List<Content> list = contentRepository.findAllByRoomId(room.getId());
+        return list;
     }
 }

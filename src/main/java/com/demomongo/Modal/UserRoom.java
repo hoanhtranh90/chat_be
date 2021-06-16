@@ -3,17 +3,17 @@ package com.demomongo.Modal;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
+@Table(name = "user_room")
 @Data
-public class Room {
+public class UserRoom {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
 
+    private Long user_id;
 
-
-
+    private Long room_id;
 }
