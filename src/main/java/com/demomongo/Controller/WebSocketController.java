@@ -6,6 +6,7 @@ import com.demomongo.Modal.UserRoomContent;
 import com.demomongo.Service.ContentService;
 import com.demomongo.Service.CreateService;
 import com.demomongo.Service.RoomService;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -38,12 +39,11 @@ public class WebSocketController {
 
     @MessageMapping("/send/message/{roomId}")
 //    @SendTo("/topic/{roomId}")
-    public void  sendMessage_ (@DestinationVariable String roomId,  UserRoomContent content) {
+    public void  sendMessage_ (@DestinationVariable String roomId,  ObjectNode content) {
         System.out.println(content);
         this.template.convertAndSend("/topic/"+roomId, content);
-        createService.createContent(content.getNoidung());
-        createService.createUserRoomContent();
-//        contentService.saveContent(content);
+        createService.createContent(content.get("noidung").asText());
+
     }
 
 //    @PostMapping("/saveRoom")

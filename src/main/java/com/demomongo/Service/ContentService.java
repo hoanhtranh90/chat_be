@@ -23,7 +23,7 @@ public class ContentService {
     private User user;
     private Room room;
     private Content content;
-    private UserRoom userRoom;
+//    private UserRoom userRoom;
     private UserRoomContent userRoomContent;
 
 
