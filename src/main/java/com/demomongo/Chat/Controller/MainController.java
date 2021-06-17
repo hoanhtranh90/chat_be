@@ -1,13 +1,14 @@
 package com.demomongo.Chat.Controller;
 
+import com.demomongo.Auth.entity.User;
 import com.demomongo.Chat.Modal.Content;
 import com.demomongo.Chat.Modal.Room;
-import com.demomongo.Chat.Modal.User;
 import com.demomongo.Chat.Service.CreateService;
 import com.demomongo.Chat.Service.RoomService;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +26,7 @@ public class MainController {
     private String noidung;
 
     @PostMapping("/init")
+    @PreAuthorize("hasAnyAuthority('USER')")
     public ResponseEntity<?> initRoom( @RequestBody ObjectNode objectNode) {
         System.out.println(objectNode.get("userName"));
         System.out.println(objectNode.get("roomName"));
@@ -33,7 +35,7 @@ public class MainController {
     }
     @PostMapping("/save_changeU")
     public ResponseEntity<?> saveAndChangeUser( @RequestBody User user) {
-        this.userName = user.getName();
+        this.userName = user.getUsername();
         //chay khi khoi tao phong
 //        createService.createUser(userName);
         return ResponseEntity.ok("ok");

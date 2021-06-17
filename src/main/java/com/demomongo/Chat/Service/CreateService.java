@@ -1,5 +1,7 @@
 package com.demomongo.Chat.Service;
 
+import com.demomongo.Auth.entity.User;
+import com.demomongo.Auth.repository.UserRepository;
 import com.demomongo.Chat.Modal.*;
 import com.demomongo.Chat.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +79,7 @@ public class CreateService {
         userRoomContent.setContent_id(content.getId());
         userRoomContent.setRoom_id(room.getId());
         userRoomContent.setUser_id(user.getId());
-        userRoomContent.setUserName(user.getName());
+        userRoomContent.setUserName(user.getUsername());
         userRoomContent.setRoomName(room.getName());
         userRoomContent.setNoidung(content.getNoidung());
         userRoomContent.setCreatedDate(content.getCreatedDate());

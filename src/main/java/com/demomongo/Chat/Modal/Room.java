@@ -1,5 +1,6 @@
 package com.demomongo.Chat.Modal;
 
+import com.demomongo.Auth.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

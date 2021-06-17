@@ -1,5 +1,6 @@
 package com.demomongo.Chat.Modal;
 
+import com.demomongo.Auth.entity.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

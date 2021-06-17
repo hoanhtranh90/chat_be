@@ -1,6 +1,7 @@
 package com.demomongo.Chat.Service;
 
 
+import com.demomongo.Auth.entity.User;
 import com.demomongo.Chat.Modal.*;
 import com.demomongo.Chat.Repository.ContentRepository;
 import com.demomongo.Chat.Repository.RoomRepository;

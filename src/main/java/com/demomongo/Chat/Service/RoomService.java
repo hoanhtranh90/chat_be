@@ -1,11 +1,11 @@
 package com.demomongo.Chat.Service;
 
+import com.demomongo.Auth.entity.User;
+import com.demomongo.Auth.repository.UserRepository;
 import com.demomongo.Chat.Modal.Content;
 import com.demomongo.Chat.Modal.Room;
-import com.demomongo.Chat.Modal.User;
 import com.demomongo.Chat.Repository.ContentRepository;
 import com.demomongo.Chat.Repository.RoomRepository;
-import com.demomongo.Chat.Repository.UserRepository;
 import com.demomongo.Chat.Repository.UserRoomContentRepository;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,12 +58,12 @@ public class RoomService {
 
         }
 
-        if(userRepository.existsByName(username)){
-            user = userRepository.findByName(username);
+        if(userRepository.existsByUsername(username)){
+            user = userRepository.findByUsername(username);
         }
         else {
             user = new User();
-            user.setName(username);
+            user.setUsername(username);
         }
 
         room.setUsers(Lists.newArrayList(user));
