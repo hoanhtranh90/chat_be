@@ -1,6 +1,6 @@
-package com.demomongo.Repository;
+package com.demomongo.Chat.Repository;
 
-import com.demomongo.Modal.UserRoomContent;
+import com.demomongo.Chat.Modal.UserRoomContent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

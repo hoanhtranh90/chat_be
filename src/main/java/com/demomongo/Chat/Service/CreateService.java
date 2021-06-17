@@ -1,7 +1,7 @@
-package com.demomongo.Service;
+package com.demomongo.Chat.Service;
 
-import com.demomongo.Modal.*;
-import com.demomongo.Repository.*;
+import com.demomongo.Chat.Modal.*;
+import com.demomongo.Chat.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

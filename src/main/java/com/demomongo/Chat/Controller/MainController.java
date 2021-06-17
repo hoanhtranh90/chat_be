@@ -1,10 +1,10 @@
-package com.demomongo.Controller;
+package com.demomongo.Chat.Controller;
 
-import com.demomongo.Modal.Content;
-import com.demomongo.Modal.Room;
-import com.demomongo.Modal.User;
-import com.demomongo.Service.CreateService;
-import com.demomongo.Service.RoomService;
+import com.demomongo.Chat.Modal.Content;
+import com.demomongo.Chat.Modal.Room;
+import com.demomongo.Chat.Modal.User;
+import com.demomongo.Chat.Service.CreateService;
+import com.demomongo.Chat.Service.RoomService;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.demomongo.Controller;
+package com.demomongo.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

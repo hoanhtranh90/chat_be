@@ -1,10 +1,10 @@
-package com.demomongo.Service;
+package com.demomongo.Chat.Service;
 
 
-import com.demomongo.Modal.*;
-import com.demomongo.Repository.ContentRepository;
-import com.demomongo.Repository.RoomRepository;
-import com.demomongo.Repository.UserRoomContentRepository;
+import com.demomongo.Chat.Modal.*;
+import com.demomongo.Chat.Repository.ContentRepository;
+import com.demomongo.Chat.Repository.RoomRepository;
+import com.demomongo.Chat.Repository.UserRoomContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

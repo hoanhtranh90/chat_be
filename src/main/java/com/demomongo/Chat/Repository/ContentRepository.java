@@ -1,9 +1,6 @@
-package com.demomongo.Repository;
+package com.demomongo.Chat.Repository;
 
-import com.demomongo.Modal.Content;
-import com.demomongo.Repository.DAO.ContentView;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.demomongo.Chat.Modal.Content;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

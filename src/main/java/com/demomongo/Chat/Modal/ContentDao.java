@@ -1,4 +1,4 @@
-package com.demomongo.Modal;
+package com.demomongo.Chat.Modal;
 
 import lombok.Data;
 

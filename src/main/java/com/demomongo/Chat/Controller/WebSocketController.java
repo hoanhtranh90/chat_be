@@ -1,11 +1,9 @@
-package com.demomongo.Controller;
+package com.demomongo.Chat.Controller;
 
-import com.demomongo.Modal.Content;
-import com.demomongo.Modal.ContentDao;
-import com.demomongo.Modal.UserRoomContent;
-import com.demomongo.Service.ContentService;
-import com.demomongo.Service.CreateService;
-import com.demomongo.Service.RoomService;
+import com.demomongo.Chat.Modal.Content;
+import com.demomongo.Chat.Service.ContentService;
+import com.demomongo.Chat.Service.CreateService;
+import com.demomongo.Chat.Service.RoomService;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

@@ -1,19 +1,16 @@
-package com.demomongo.Service;
+package com.demomongo.Chat.Service;
 
-import com.demomongo.Modal.Content;
-import com.demomongo.Modal.Room;
-import com.demomongo.Modal.User;
-import com.demomongo.Modal.UserRoomContent;
-import com.demomongo.Repository.ContentRepository;
-import com.demomongo.Repository.DAO.ContentView;
-import com.demomongo.Repository.RoomRepository;
-import com.demomongo.Repository.UserRepository;
-import com.demomongo.Repository.UserRoomContentRepository;
+import com.demomongo.Chat.Modal.Content;
+import com.demomongo.Chat.Modal.Room;
+import com.demomongo.Chat.Modal.User;
+import com.demomongo.Chat.Repository.ContentRepository;
+import com.demomongo.Chat.Repository.RoomRepository;
+import com.demomongo.Chat.Repository.UserRepository;
+import com.demomongo.Chat.Repository.UserRoomContentRepository;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
 
 @Service
