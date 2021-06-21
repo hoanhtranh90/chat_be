@@ -32,7 +32,6 @@ public class ContentService {
 
     public List<Content> findByRoom(String roomName, Pageable pageable){
 //        Room room = roomRepository.findByName(roomName);
-//        List<Content> mainList1 = contentRepository.findAllByRoomId(room.getId(),pageable);
 
 //        List<Content> mainList1 = new ArrayList<Content>();
 //        mainList1.addAll(room.getItems());

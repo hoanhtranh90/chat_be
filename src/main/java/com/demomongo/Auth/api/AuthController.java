@@ -1,18 +1,23 @@
 package com.demomongo.Auth.api;
 
 
+import com.demomongo.Auth.DTO.UserDto;
 import com.demomongo.Auth.entity.Role;
 import com.demomongo.Auth.entity.Token;
 import com.demomongo.Auth.entity.User;
 import com.demomongo.Auth.repository.RoleRepository;
+import com.demomongo.Auth.repository.UserRepository;
 import com.demomongo.Auth.security.JwtUtil;
 import com.demomongo.Auth.security.UserPrincipal;
 import com.demomongo.Auth.service.TokenService;
 import com.demomongo.Auth.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +37,9 @@ public class AuthController {
     private RoleRepository roleRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private TokenService tokenService;
 
     @Autowired
@@ -40,8 +48,15 @@ public class AuthController {
     @PostConstruct
     public  ResponseEntity createFirstRole(){
         //
-        return ResponseEntity.ok("ok");
+        Role role = new Role();
+        role.setRoleName("USER");
+        roleRepository.save(role);
+        Role role1 = new Role();
+        role1.setRoleName("ADMIN");
+        roleRepository.save(role1);
+        return ResponseEntity.ok("success");
     }
+
     @PostMapping("/register")
     public User register(@RequestBody User user) {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
@@ -76,5 +91,19 @@ public class AuthController {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity testAdmin() {
         return ResponseEntity.ok("ADMIN");
+    }
+
+    @GetMapping("/getInfo")
+    @PreAuthorize("hasAnyAuthority('USER')")
+    public ResponseEntity getUserInfo() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByUsername(auth.getName());
+        ModelMapper mapper = new ModelMapper();
+
+        //convert Dto
+        UserDto userDto = mapper.map(user, UserDto.class);
+
+
+        return ResponseEntity.ok(userDto);
     }
 }

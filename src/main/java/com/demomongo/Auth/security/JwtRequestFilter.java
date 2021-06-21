@@ -38,8 +38,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         UserPrincipal user = null;
         Token token = null;
-        if (StringUtils.hasText(authorizationHeader) && authorizationHeader.startsWith("Token ")) {
-            String jwt = authorizationHeader.substring(6);
+        if (StringUtils.hasText(authorizationHeader) && authorizationHeader.startsWith("Bearer ")) {
+            String jwt = authorizationHeader.substring(7);
             user = jwtUtil.getUserFromToken(jwt);
             token = verificationTokenService.findByToken(jwt);
         }

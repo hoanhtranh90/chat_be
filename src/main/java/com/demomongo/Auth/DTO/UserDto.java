@@ -1,5 +1,7 @@
-package com.demomongo.Auth.entity;
+package com.demomongo.Auth.DTO;
 
+import com.demomongo.Auth.entity.BaseEntity;
+import com.demomongo.Auth.entity.Role;
 import com.demomongo.Chat.Modal.Content;
 import com.demomongo.Chat.Modal.Room;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,12 +17,9 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends BaseEntity {
+public class UserDto extends BaseEntity {
 
     private String username;
-
-
-    private String password;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})

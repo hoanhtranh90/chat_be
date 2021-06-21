@@ -73,4 +73,8 @@ public class RoomService {
 //
         roomRepository.save(room);
     }
+
+    public boolean checkRoomExits(String roomName) {
+        return roomRepository.existsRoomByName(roomName);
+    }
 }

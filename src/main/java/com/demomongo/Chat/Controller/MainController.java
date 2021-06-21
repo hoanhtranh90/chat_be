@@ -33,6 +33,12 @@ public class MainController {
         roomService.initRoom(objectNode.get("userName").asText(),objectNode.get("roomName").asText());
         return ResponseEntity.ok(objectNode);
     }
+
+    @PostMapping("/check")
+    @PreAuthorize("hasAnyAuthority('USER')")
+    public ResponseEntity<?> checkRoomExits( @RequestBody ObjectNode objectNode) {
+        return ResponseEntity.ok(roomService.checkRoomExits(objectNode.get("roomName").asText()));
+    }
     @PostMapping("/save_changeU")
     public ResponseEntity<?> saveAndChangeUser( @RequestBody User user) {
         this.userName = user.getUsername();
