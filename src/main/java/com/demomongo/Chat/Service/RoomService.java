@@ -1,5 +1,6 @@
 package com.demomongo.Chat.Service;
 
+import com.demomongo.Auth.DTO.UserDto;
 import com.demomongo.Auth.entity.User;
 import com.demomongo.Auth.repository.UserRepository;
 import com.demomongo.Chat.Modal.Content;
@@ -8,19 +9,22 @@ import com.demomongo.Chat.Repository.ContentRepository;
 import com.demomongo.Chat.Repository.RoomRepository;
 import com.demomongo.Chat.Repository.UserRoomContentRepository;
 import com.google.common.collect.Lists;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RoomService {
     @Autowired
     private ContentRepository contentRepository;
     @Autowired
-    private RoomRepository roomRepository;
-    @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoomRepository roomRepository;
+
 
     private Room room;
     private User user;
@@ -37,6 +41,12 @@ public class RoomService {
         Room room = roomRepository.findByName(roomName);
         List<Content> list = contentRepository.findAllByRoomId(room.getId());
         return list;
+    }
+
+    public List<User> loadUserInRoom(String roomName){
+        Room room = roomRepository.findByName(roomName);
+        List<User> userList = room.getUsers().stream().collect(Collectors.toList());
+        return userList;
     }
 
     public Room getRoom(){

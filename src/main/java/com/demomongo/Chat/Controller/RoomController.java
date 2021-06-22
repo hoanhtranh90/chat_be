@@ -15,4 +15,9 @@ public class RoomController {
     public ResponseEntity<?> getHistoryofRoom(@RequestBody Room room){
         return ResponseEntity.ok(roomService.loadHistory(room.getName()));
     }
+
+    @PostMapping("/userInRoom")
+    public ResponseEntity<?> getUserInRoom(@RequestBody Room room){
+        return ResponseEntity.ok(roomService.loadUserInRoom(room.getName()));
+    }
 }
