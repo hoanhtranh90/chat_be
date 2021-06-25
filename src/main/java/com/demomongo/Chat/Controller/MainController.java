@@ -34,51 +34,17 @@ public class MainController {
         return ResponseEntity.ok(objectNode);
     }
 
+    @PostMapping("/add")
+    @PreAuthorize("hasAnyAuthority('USER')")
+    public ResponseEntity<?> addUser( @RequestBody ObjectNode objectNode) {
+        System.out.println(objectNode.get("userName"));
+        System.out.println(objectNode.get("roomName"));
+        roomService.addUserToRoom(objectNode.get("userName").asText(),objectNode.get("roomName").asText());
+        return ResponseEntity.ok(objectNode);
+    }
     @PostMapping("/check")
     @PreAuthorize("hasAnyAuthority('USER')")
     public ResponseEntity<?> checkRoomExits( @RequestBody ObjectNode objectNode) {
         return ResponseEntity.ok(roomService.checkRoomExits(objectNode.get("roomName").asText()));
-    }
-    @PostMapping("/save_changeU")
-    public ResponseEntity<?> saveAndChangeUser( @RequestBody User user) {
-        this.userName = user.getUsername();
-        //chay khi khoi tao phong
-//        createService.createUser(userName);
-        return ResponseEntity.ok("ok");
-    }
-    @PostMapping("/save_changeR")
-    public ResponseEntity<?> saveAndChangeRoom( @RequestBody Room room) {
-        this.roomName = room.getName();
-        //chay khi khoi tao phong
-//        createService.createRoom(roomName);
-        return ResponseEntity.ok("ok");
-    }
-    @PostMapping("/save_C")
-    public ResponseEntity<?> saveContent(@RequestBody Content content) {
-        this.noidung = content.getNoidung();
-        //chay khi chat
-        createService.createContent(noidung);
-        return ResponseEntity.ok("ok");
-    }
-//    public ResponseEntity<?> saveUserRoom() {
-//        //chay khi khoi tao phong
-//        createService.createUserRoom();
-//        return ResponseEntity.ok("ok");
-//    }
-    public ResponseEntity<?> saveUserRoomContent() {
-        //chay khi chat
-        createService.createUserRoomContent();
-        return ResponseEntity.ok("ok");
-    }
-
-//    @PostMapping("/saveR_U")
-//    public ResponseEntity<?> startRoom() {
-//        createService.createUserRoom();
-//        return ResponseEntity.ok("ok");
-//    }
-    @PostMapping("/send")
-    public ResponseEntity<?> sendMess() {
-        createService.createUserRoomContent();
-        return ResponseEntity.ok("ok");
     }
 }

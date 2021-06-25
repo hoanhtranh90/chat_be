@@ -12,8 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -37,10 +40,10 @@ public class WebSocketController {
 
     @MessageMapping("/send/message/{roomId}")
 //    @SendTo("/topic/{roomId}")
-    public void  sendMessage_ (@DestinationVariable String roomId,  ObjectNode content) {
+    public void  sendMessage_ ( @DestinationVariable String roomId, ObjectNode content) {
         System.out.println(content);
         this.template.convertAndSend("/topic/"+roomId, content);
-        createService.createContent(content.get("noidung").asText());
+//        createService.createContent(roomId,content.get("noidung").asText());
 
     }
 
@@ -69,8 +72,9 @@ public class WebSocketController {
 ////        this.template.convertAndSend("/message",  message);
 //        return ResponseEntity.ok(content);
 //    }
-    @GetMapping("/history")
-    public ResponseEntity<List<Content>> getChatHistory(@RequestParam String roomId, @PageableDefault(size = 20) Pageable pageable) {
-        return ResponseEntity.ok(contentService.findByRoom(roomId, pageable));
-    }
+
+//    @GetMapping("/history")
+//    public ResponseEntity<List<Content>> getChatHistory(@RequestParam String roomId, @PageableDefault(size = 20) Pageable pageable) {
+//        return ResponseEntity.ok(contentService.findByRoom(roomId, pageable));
+//    }
 }
